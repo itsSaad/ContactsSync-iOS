@@ -11,7 +11,6 @@
 		93F2395F1A12363D00745E53 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F2395E1A12363D00745E53 /* AppDelegate.m */; };
 		93F239621A12363D00745E53 /* ContactsSyncSampleApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 93F239601A12363D00745E53 /* ContactsSyncSampleApp.xcdatamodeld */; };
 		93F239651A12363D00745E53 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F239641A12363D00745E53 /* MasterViewController.m */; };
-		93F239681A12363D00745E53 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F239671A12363D00745E53 /* DetailViewController.m */; };
 		93F2396B1A12363D00745E53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93F239691A12363D00745E53 /* Main.storyboard */; };
 		93F2396D1A12363D00745E53 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93F2396C1A12363D00745E53 /* Images.xcassets */; };
 		93F239701A12363D00745E53 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93F2396E1A12363D00745E53 /* LaunchScreen.xib */; };
@@ -37,8 +36,6 @@
 		93F239611A12363D00745E53 /* ContactsSyncSampleApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ContactsSyncSampleApp.xcdatamodel; sourceTree = "<group>"; };
 		93F239631A12363D00745E53 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		93F239641A12363D00745E53 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		93F239661A12363D00745E53 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		93F239671A12363D00745E53 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		93F2396A1A12363D00745E53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		93F2396C1A12363D00745E53 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		93F2396F1A12363D00745E53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -90,8 +87,6 @@
 				93F2395E1A12363D00745E53 /* AppDelegate.m */,
 				93F239631A12363D00745E53 /* MasterViewController.h */,
 				93F239641A12363D00745E53 /* MasterViewController.m */,
-				93F239661A12363D00745E53 /* DetailViewController.h */,
-				93F239671A12363D00745E53 /* DetailViewController.m */,
 				93F239691A12363D00745E53 /* Main.storyboard */,
 				93F2396C1A12363D00745E53 /* Images.xcassets */,
 				93F2396E1A12363D00745E53 /* LaunchScreen.xib */,
@@ -176,6 +171,7 @@
 				TargetAttributes = {
 					93F239551A12363D00745E53 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = HCH56ETPTM;
 					};
 					93F239741A12363D00745E53 = {
 						CreatedOnToolsVersion = 6.1;
@@ -227,7 +223,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93F239681A12363D00745E53 /* DetailViewController.m in Sources */,
 				93F239651A12363D00745E53 /* MasterViewController.m in Sources */,
 				93F239621A12363D00745E53 /* ContactsSyncSampleApp.xcdatamodeld in Sources */,
 				93F2395F1A12363D00745E53 /* AppDelegate.m in Sources */,
@@ -353,9 +348,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Saad Masood (Z645VAXGY8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Saad Masood (Z645VAXGY8)";
 				INFOPLIST_FILE = ContactsSyncSampleApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "81c111ef-85f5-4883-8159-dd6769b81e9c";
 			};
 			name = Debug;
 		};
@@ -363,9 +361,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Saad Masood (Z645VAXGY8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ContactsSyncSampleApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "81c111ef-85f5-4883-8159-dd6769b81e9c";
 			};
 			name = Release;
 		};
@@ -422,6 +423,7 @@
 				93F239811A12363D00745E53 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		93F239821A12363D00745E53 /* Build configuration list for PBXNativeTarget "ContactsSyncSampleAppTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +432,7 @@
 				93F239841A12363D00745E53 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

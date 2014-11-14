@@ -7,9 +7,14 @@
 //
 
 #import "MasterViewController.h"
-#import "DetailViewController.h"
+
+@import AddressBook;
+@import AddressBookUI;
 
 @interface MasterViewController ()
+
+@property (nonatomic) ABAddressBookRef book;
+@property (strong, nonatomic) NSArray *allContacts;
 
 @end
 
@@ -26,56 +31,120 @@
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
+    
+    [self checkAddressBook];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
-- (void)insertNewObject:(id)sender {
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-        
-    // If appropriate, configure the new managed object.
-    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
-        
-    // Save the context.
-    NSError *error = nil;
-    if (![context save:&error]) {
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
+
+#pragma mark - Contacts Thingy
+
+-(void)checkAddressBook
+{
+    //Checks the Auth Status for fetching contacts.
+    if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized)
+    {
+        //Yes we can access contacts. Yay! :)
+        [self fetchAllContacts];
     }
+    else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined)
+    {
+        if ([self canAccessContacts:self.book])
+        {
+            [self fetchAllContacts];
+        }
+        else
+        {
+            //User Denied Access. :(
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Contact Access" message:@"You need to provide contact access to use this App. Please allow this app in Settings." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }
+    else
+    {
+        //Access Already Restricted. :(
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Contact Access" message:@"You need to provide contact access to use this App. Please allow this app in Settings." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
+
+-(BOOL)canAccessContacts:(ABAddressBookRef)book
+{
+    __block BOOL accessGranted = NO;
+    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+    ABAddressBookRequestAccessWithCompletion(book, ^(bool granted, CFErrorRef error)
+    {
+        accessGranted = granted;
+        dispatch_semaphore_signal(sema);
+    });
+    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+    if (accessGranted)
+    {
+        return YES;
+    }
+    return NO;
+}
+
+-(void)fetchAllContacts
+{
+    NSMutableArray * allPersons = [[NSMutableArray alloc]init];
+    //Get the Contacts now.
+    CFErrorRef error;
+    self.book = ABAddressBookCreateWithOptions(NULL, &error);
+    // Get all People from Address Book
+    CFArrayRef allContacts = ABAddressBookCopyArrayOfAllPeople(self.book);
+    CFIndex totalContacts = ABAddressBookGetPersonCount(self.book);
+    for (int i = 0; i < totalContacts; i++)
+    {
+        ABRecordRef aPerson = CFArrayGetValueAtIndex(allContacts, i);
+        NSMutableDictionary * aRecord = [[NSMutableDictionary alloc] init];
+        NSString * recID = [NSString stringWithFormat:@"%ld", (long)ABRecordGetRecordID(aPerson)];
+        NSString * recName = (__bridge NSString *)(ABRecordCopyCompositeName(aPerson));
+        if (!recName)
+        {
+            recName = @"No Name";
+        }
+        [aRecord setObject:recID forKey:@"recordID"];
+        [aRecord setObject:recName forKey:@"recordName"];
+        [aRecord setObject:(__bridge id)(aPerson) forKey:@"recordRef"];
+        [allPersons addObject:aRecord];
+    }
+    self.allContacts = (NSArray *)allPersons;
+    
 }
 
 #pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        [[segue destinationViewController] setDetailItem:object];
+    if ([[segue identifier] isEqualToString:@"contactDetail"])
+    {
+//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+//        NSDictionary * object = [self.allContacts objectAtIndex:indexPath.row];
+//        NSInteger recordID = [[object objectForKey:@"recordID"] integerValue];
+//        ABPersonViewController * vc = [segue destinationViewController];
+//        ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
+//        vc.displayedPerson = ABAddressBookGetPersonWithRecordID(addressBook, (int32_t)recordID);
     }
 }
 
 #pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [[self.fetchedResultsController sections] count];
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-    return [sectionInfo numberOfObjects];
+    return [self.allContacts count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    [self configureCell:cell atIndexPath:indexPath];
+    if (!cell)
+    {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    }
+    cell.textLabel.text = [[self.allContacts objectAtIndex:indexPath.row] objectForKey:@"recordName"];
     return cell;
 }
 
@@ -99,111 +168,15 @@
     }
 }
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
-}
-
-#pragma mark - Fetched results controller
-
-- (NSFetchedResultsController *)fetchedResultsController
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (_fetchedResultsController != nil) {
-        return _fetchedResultsController;
-    }
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    
-    // Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:20];
-    
-    // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
-    NSArray *sortDescriptors = @[sortDescriptor];
-    
-    [fetchRequest setSortDescriptors:sortDescriptors];
-    
-    // Edit the section name key path and cache name if appropriate.
-    // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
-    aFetchedResultsController.delegate = self;
-    self.fetchedResultsController = aFetchedResultsController;
-    
-	NSError *error = nil;
-	if (![self.fetchedResultsController performFetch:&error]) {
-	     // Replace this implementation with code to handle the error appropriately.
-	     // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-	    abort();
-	}
-    
-    return _fetchedResultsController;
-}    
-
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
-    [self.tableView beginUpdates];
+    NSDictionary * object = [self.allContacts objectAtIndex:indexPath.row];
+    NSInteger recordID = [[object objectForKey:@"recordID"] integerValue];
+    ABPersonViewController * vc = [[ABPersonViewController alloc] init];
+    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
+    vc.displayedPerson = ABAddressBookGetPersonWithRecordID(addressBook, (int32_t)recordID);
+    vc.addressBook = addressBook;
+    [self.navigationController pushViewController:vc animated:YES];
 }
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
-           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
-{
-    switch(type) {
-        case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        default:
-            return;
-    }
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
-       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath
-{
-    UITableView *tableView = self.tableView;
-    
-    switch(type) {
-        case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeUpdate:
-            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
-            break;
-            
-        case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    [self.tableView endUpdates];
-}
-
-/*
-// Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed. 
- 
- - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    // In the simplest, most efficient, case, reload the table view.
-    [self.tableView reloadData];
-}
- */
 
 @end
