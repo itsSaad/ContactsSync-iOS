@@ -7,6 +7,7 @@
 //
 
 #import "MasterViewController.h"
+#import "AFNetworking.h"
 
 @import AddressBook;
 @import AddressBookUI;
@@ -15,16 +16,19 @@
 
 @property (nonatomic) ABAddressBookRef book;
 @property (strong, nonatomic) NSArray *allContacts;
+@property (strong, nonatomic) NSMutableDictionary * currentUser;
 
 @end
 
 @implementation MasterViewController
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
@@ -32,7 +36,21 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(syncContacts)];
     self.navigationItem.rightBarButtonItem = addButton;
     
+    self.currentUser = [[NSMutableDictionary alloc]init];
+    self.currentUser[@"first_name"] = @"Saad";
+    self.currentUser[@"last_name"] = @"Masood";
+    self.currentUser[@"phones"] = @[@"+923219428808"];
+    self.currentUser[@"emails"] = @[@"itssaad@icloud.com"];
+    
+    
+    
     [self checkAddressBook];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self syncContacts];
 }
 
 
@@ -115,12 +133,134 @@
 
 -(void) syncContacts
 {
+    
+    
     //Lets send over the contacts.
+    dispatch_queue_t aQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(aQueue, ^(){
+       //Lets gather all the contacts first.
+        NSMutableArray  * allCompleteContacts = [[NSMutableArray alloc]init];
+        for (NSDictionary *aContact in self.allContacts)
+        {
+            //Get all the data for aContact.
+            NSMutableDictionary *completeInfo = [[NSMutableDictionary alloc]init];
+            ABRecordRef contactRecord = (__bridge ABRecordRef)(aContact[@"recordRef"]);
+            NSString * firstName = (__bridge id)(ABRecordCopyValue(contactRecord, kABPersonFirstNameProperty));
+            NSString * middleName = (__bridge id)(ABRecordCopyValue(contactRecord, kABPersonMiddleNameProperty));
+            NSString * lastName = (__bridge id)(ABRecordCopyValue(contactRecord, kABPersonLastNameProperty));
+            NSString * namePrefix = (__bridge NSString *)(ABRecordCopyValue(contactRecord, kABPersonPrefixProperty));
+            NSString * nameSuffix = (__bridge NSString *)(ABRecordCopyValue(contactRecord, kABPersonSuffixProperty));
+            NSString * nickname = (__bridge id)(ABRecordCopyValue(contactRecord, kABPersonNicknameProperty));
+            NSString * organizationName = (__bridge id)(ABRecordCopyValue(contactRecord, kABPersonOrganizationProperty));
+            NSString * jobTitle = (__bridge id)(ABRecordCopyValue(contactRecord, kABPersonJobTitleProperty));
+            NSString * departmentName = (__bridge id)(ABRecordCopyValue(contactRecord, kABPersonDepartmentProperty));
+            NSDate * birthday = (__bridge id)(ABRecordCopyValue(contactRecord, kABPersonBirthdayProperty));
+            NSString * note = (__bridge id)(ABRecordCopyValue(contactRecord, kABPersonNoteProperty));
+            NSDate * creationDate = (__bridge id)(ABRecordCopyValue(contactRecord, kABPersonCreationDateProperty));
+            NSDate * modificationDate = (__bridge id)(ABRecordCopyValue(contactRecord, kABPersonModificationDateProperty));
+            
+            
+            CFTypeRef phoneProperty = ABRecordCopyValue(contactRecord, kABPersonPhoneProperty);
+            NSArray *phones = (__bridge NSArray *)ABMultiValueCopyArrayOfAllValues(phoneProperty);
+            
+            CFTypeRef emailProp = ABRecordCopyValue(contactRecord, kABPersonEmailProperty);
+            NSArray * emails = (__bridge NSArray *)ABMultiValueCopyArrayOfAllValues(emailProp);
+            
+            if (!firstName)
+            {
+                firstName = @"";
+            }
+            if (!middleName)
+            {
+                middleName = @"";
+            }
+            if (!lastName)
+            {
+                lastName = @"";
+            }
+            if (!namePrefix)
+            {
+                namePrefix = @"";
+            }
+            if (!nameSuffix)
+            {
+                nameSuffix = @"";
+            }
+            if (!nickname)
+            {
+                nickname = @"";
+            }
+            if (!organizationName)
+            {
+                organizationName = @"";
+            }
+            if (!jobTitle)
+            {
+                jobTitle = @"";
+            }
+            if (!departmentName)
+            {
+                departmentName = @"";
+            }
+            if (!birthday)
+            {
+                birthday = [[NSDate alloc] initWithTimeIntervalSince1970:NSTimeIntervalSince1970];
+            }
+            if (!note)
+            {
+                note = @"";
+            }
+            
+            if (!phones)
+            {
+                phones = @[];
+            }
+            if (!emails)
+            {
+                emails = @[];
+            }
+            
+            //Conclude the contact.
+            completeInfo[@"first_name"] = firstName;
+            completeInfo[@"middle_name"] = middleName;
+            completeInfo[@"last_name"] = lastName;
+            completeInfo[@"job_title"] = jobTitle;
+            completeInfo[@"department"] = departmentName;
+            completeInfo[@"organization"] = organizationName;
+            completeInfo[@"prefix"] = namePrefix;
+            completeInfo[@"suffix"] = nameSuffix;
+            completeInfo[@"birthdate"] = birthday;
+            completeInfo[@"note"] = note;
+            completeInfo[@"creation_date"] = creationDate;
+            completeInfo[@"modification_date"] = modificationDate;
+            [completeInfo setObject:phones forKey:@"phones"];
+            [completeInfo setObject:emails forKey:@"emails"];
+            
+            [allCompleteContacts addObject:completeInfo];
+        }
+        
+        
+        
+        //Now lets upload all to the server.
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        NSMutableDictionary *params = [[NSMutableDictionary alloc]init];
+        NSString * apiKey = [[NSUserDefaults standardUserDefaults] objectForKey:@"api_key"];
+        [params setObject:allCompleteContacts forKey:@"contacts"];
+        [params setObject:self.currentUser forKey:@"user"];
+        [manager POST:[NSString stringWithFormat:@"http://192.168.1.15:3000/api/v1/users/sync_contacts.json?api_key=%@", apiKey] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject)
+        {
+            NSLog(@"JSON: %@", responseObject);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+        {
+            NSLog(@"Error: %@", error);
+        }];
+    });
 }
 
 #pragma mark - Segues
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     if ([[segue identifier] isEqualToString:@"contactDetail"])
     {
 //        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
@@ -134,11 +274,13 @@
 
 #pragma mark - Table View
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return [self.allContacts count];
 }
 
@@ -153,18 +295,21 @@
     return cell;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
         [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
             
         NSError *error = nil;
-        if (![context save:&error]) {
+        if (![context save:&error])
+        {
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
