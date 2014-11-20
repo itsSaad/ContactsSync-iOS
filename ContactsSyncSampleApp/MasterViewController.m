@@ -37,13 +37,18 @@
     self.navigationItem.rightBarButtonItem = addButton;
     
     self.currentUser = [[NSMutableDictionary alloc]init];
-    self.currentUser[@"first_name"] = @"Saad";
-    self.currentUser[@"last_name"] = @"Masood";
-    self.currentUser[@"phones"] = @[@"+923219428808"];
-    self.currentUser[@"emails"] = @[@"itssaad@icloud.com"];
     
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    self.currentUser = [def valueForKey:@"current_user"];
     
-    
+    if (!self.currentUser)
+    {
+        self.currentUser = [[NSMutableDictionary alloc]init];
+        self.currentUser[@"first_name"] = @"Saad";
+        self.currentUser[@"last_name"] = @"Masood";
+        self.currentUser[@"emails"] = @[@"itsSaad@icloud.com"];
+        self.currentUser[@"phones"] = @[@"+923219428808"];
+    }
     [self checkAddressBook];
 }
 
@@ -140,120 +145,51 @@
     dispatch_async(aQueue, ^(){
        //Lets gather all the contacts first.
         NSMutableArray  * allCompleteContacts = [[NSMutableArray alloc]init];
+        ABAddressBookRef addressbook = ABAddressBookCreateWithOptions(NULL, NULL);
+        CFTimeInterval startTime = CACurrentMediaTime();
         for (NSDictionary *aContact in self.allContacts)
         {
             //Get all the data for aContact.
-            NSMutableDictionary *completeInfo = [[NSMutableDictionary alloc]init];
-            ABRecordRef contactRecord = (__bridge ABRecordRef)(aContact[@"recordRef"]);
-            NSString * firstName = (__bridge id)(ABRecordCopyValue(contactRecord, kABPersonFirstNameProperty));
-            NSString * middleName = (__bridge id)(ABRecordCopyValue(contactRecord, kABPersonMiddleNameProperty));
-            NSString * lastName = (__bridge id)(ABRecordCopyValue(contactRecord, kABPersonLastNameProperty));
-            NSString * namePrefix = (__bridge NSString *)(ABRecordCopyValue(contactRecord, kABPersonPrefixProperty));
-            NSString * nameSuffix = (__bridge NSString *)(ABRecordCopyValue(contactRecord, kABPersonSuffixProperty));
-            NSString * nickname = (__bridge id)(ABRecordCopyValue(contactRecord, kABPersonNicknameProperty));
-            NSString * organizationName = (__bridge id)(ABRecordCopyValue(contactRecord, kABPersonOrganizationProperty));
-            NSString * jobTitle = (__bridge id)(ABRecordCopyValue(contactRecord, kABPersonJobTitleProperty));
-            NSString * departmentName = (__bridge id)(ABRecordCopyValue(contactRecord, kABPersonDepartmentProperty));
-            NSDate * birthday = (__bridge id)(ABRecordCopyValue(contactRecord, kABPersonBirthdayProperty));
-            NSString * note = (__bridge id)(ABRecordCopyValue(contactRecord, kABPersonNoteProperty));
-            NSDate * creationDate = (__bridge id)(ABRecordCopyValue(contactRecord, kABPersonCreationDateProperty));
-            NSDate * modificationDate = (__bridge id)(ABRecordCopyValue(contactRecord, kABPersonModificationDateProperty));
+            NSString * rec = [aContact valueForKey:@"recordID"];
+            ABRecordID recordID = (ABRecordID)[rec integerValue];
             
-            
-            CFTypeRef phoneProperty = ABRecordCopyValue(contactRecord, kABPersonPhoneProperty);
-            NSArray *phones = (__bridge NSArray *)ABMultiValueCopyArrayOfAllValues(phoneProperty);
-            
-            CFTypeRef emailProp = ABRecordCopyValue(contactRecord, kABPersonEmailProperty);
-            NSArray * emails = (__bridge NSArray *)ABMultiValueCopyArrayOfAllValues(emailProp);
-            
-            if (!firstName)
-            {
-                firstName = @"";
-            }
-            if (!middleName)
-            {
-                middleName = @"";
-            }
-            if (!lastName)
-            {
-                lastName = @"";
-            }
-            if (!namePrefix)
-            {
-                namePrefix = @"";
-            }
-            if (!nameSuffix)
-            {
-                nameSuffix = @"";
-            }
-            if (!nickname)
-            {
-                nickname = @"";
-            }
-            if (!organizationName)
-            {
-                organizationName = @"";
-            }
-            if (!jobTitle)
-            {
-                jobTitle = @"";
-            }
-            if (!departmentName)
-            {
-                departmentName = @"";
-            }
-            if (!birthday)
-            {
-                birthday = [[NSDate alloc] initWithTimeIntervalSince1970:NSTimeIntervalSince1970];
-            }
-            if (!note)
-            {
-                note = @"";
-            }
-            
-            if (!phones)
-            {
-                phones = @[];
-            }
-            if (!emails)
-            {
-                emails = @[];
-            }
+            Contact *aCompleteContact = [[Contact alloc]initWithRecordID:recordID forAddressBook:addressbook];
             
             //Conclude the contact.
-            completeInfo[@"first_name"] = firstName;
-            completeInfo[@"middle_name"] = middleName;
-            completeInfo[@"last_name"] = lastName;
-            completeInfo[@"job_title"] = jobTitle;
-            completeInfo[@"department"] = departmentName;
-            completeInfo[@"organization"] = organizationName;
-            completeInfo[@"prefix"] = namePrefix;
-            completeInfo[@"suffix"] = nameSuffix;
-            completeInfo[@"birthdate"] = birthday;
-            completeInfo[@"note"] = note;
-            completeInfo[@"creation_date"] = creationDate;
-            completeInfo[@"modification_date"] = modificationDate;
-            [completeInfo setObject:phones forKey:@"phones"];
-            [completeInfo setObject:emails forKey:@"emails"];
             
-            [allCompleteContacts addObject:completeInfo];
+            [allCompleteContacts addObject:aCompleteContact];
         }
+        CFTimeInterval endTime = CACurrentMediaTime();
+        NSLog(@"Total Runtime: %g s", endTime - startTime);
         
-        
-        
-        //Now lets upload all to the server.
+    //Now lets upload all to the server.
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         NSMutableDictionary *params = [[NSMutableDictionary alloc]init];
         NSString * apiKey = [[NSUserDefaults standardUserDefaults] objectForKey:@"api_key"];
-        [params setObject:allCompleteContacts forKey:@"contacts"];
+        [params setObject:[Contact dictRepresenationFor:allCompleteContacts] forKey:@"contacts"];
         [params setObject:self.currentUser forKey:@"user"];
         [manager POST:[NSString stringWithFormat:@"http://192.168.1.15:3000/api/v1/users/sync_contacts.json?api_key=%@", apiKey] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject)
         {
             NSLog(@"JSON: %@", responseObject);
+            NSUserDefaults *def  = [NSUserDefaults standardUserDefaults];
+            NSMutableDictionary * currentUser = [(NSMutableDictionary *)[responseObject objectForKey:@"user"] mutableCopy];
+            NSArray * keys = [currentUser allKeys];
+            for (NSString * Akey in keys)
+            {
+                if ([currentUser valueForKey:Akey] == [NSNull null])
+                {
+                    [currentUser removeObjectForKey:Akey];
+                }
+            }
+            [def setValue:currentUser forKey:@"current_user"];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error)
         {
             NSLog(@"Error: %@", error);
         }];
+        
+        dispatch_sync(dispatch_get_main_queue(), ^(){
+            
+        });
     });
 }
 
@@ -325,7 +261,6 @@
     ABPersonViewController * vc = [[ABPersonViewController alloc] init];
     ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
     vc.displayedPerson = ABAddressBookGetPersonWithRecordID(addressBook, (int32_t)recordID);
-    vc.addressBook = addressBook;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

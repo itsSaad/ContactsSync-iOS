@@ -1,1006 +1,540 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>archiveVersion</key>
-	<string>1</string>
-	<key>classes</key>
-	<dict/>
-	<key>objectVersion</key>
-	<string>46</string>
-	<key>objects</key>
-	<dict>
-		<key>36BB4055165BF4183CE8C208</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Check Pods Manifest.lock</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
-if [[ $? != 0 ]] ; then
-    cat &lt;&lt; EOM
-error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
-EOM
-    exit 1
-fi
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-		<key>784B87664ABAF94C87497DD4</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>archive.ar</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>libPods-ContactsSyncSampleApp.a</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>7B551744339920766738FF62</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>AC3D4DA94E5477ABA79D8005</string>
-				<string>82B8FEA0703F5A9E79ECC403</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Pods</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>82B8FEA0703F5A9E79ECC403</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>name</key>
-			<string>Pods-ContactsSyncSampleApp.release.xcconfig</string>
-			<key>path</key>
-			<string>Pods/Target Support Files/Pods-ContactsSyncSampleApp/Pods-ContactsSyncSampleApp.release.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>90302A6A9097A5E7F8FBA2CB</key>
-		<dict>
-			<key>fileRef</key>
-			<string>784B87664ABAF94C87497DD4</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>93F2394D1A12363D00745E53</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>93F239581A12363D00745E53</string>
-				<string>93F239781A12363D00745E53</string>
-				<string>93F239571A12363D00745E53</string>
-				<string>7B551744339920766738FF62</string>
-				<string>C9B6250C00AEEADE5588AC9F</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>93F2394E1A12363D00745E53</key>
-		<dict>
-			<key>attributes</key>
-			<dict>
-				<key>LastUpgradeCheck</key>
-				<string>0610</string>
-				<key>ORGANIZATIONNAME</key>
-				<string>QBXNet Ltd.</string>
-				<key>TargetAttributes</key>
-				<dict>
-					<key>93F239551A12363D00745E53</key>
-					<dict>
-						<key>CreatedOnToolsVersion</key>
-						<string>6.1</string>
-						<key>DevelopmentTeam</key>
-						<string>HCH56ETPTM</string>
-					</dict>
-					<key>93F239741A12363D00745E53</key>
-					<dict>
-						<key>CreatedOnToolsVersion</key>
-						<string>6.1</string>
-						<key>TestTargetID</key>
-						<string>93F239551A12363D00745E53</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>buildConfigurationList</key>
-			<string>93F239511A12363D00745E53</string>
-			<key>compatibilityVersion</key>
-			<string>Xcode 3.2</string>
-			<key>developmentRegion</key>
-			<string>English</string>
-			<key>hasScannedForEncodings</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXProject</string>
-			<key>knownRegions</key>
-			<array>
-				<string>en</string>
-				<string>Base</string>
-			</array>
-			<key>mainGroup</key>
-			<string>93F2394D1A12363D00745E53</string>
-			<key>productRefGroup</key>
-			<string>93F239571A12363D00745E53</string>
-			<key>projectDirPath</key>
-			<string></string>
-			<key>projectReferences</key>
-			<array/>
-			<key>projectRoot</key>
-			<string></string>
-			<key>targets</key>
-			<array>
-				<string>93F239551A12363D00745E53</string>
-				<string>93F239741A12363D00745E53</string>
-			</array>
-		</dict>
-		<key>93F239511A12363D00745E53</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>93F2397D1A12363D00745E53</string>
-				<string>93F2397E1A12363D00745E53</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>93F239521A12363D00745E53</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>93F239651A12363D00745E53</string>
-				<string>93F239621A12363D00745E53</string>
-				<string>93F2395F1A12363D00745E53</string>
-				<string>93F2395C1A12363D00745E53</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>93F239531A12363D00745E53</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>90302A6A9097A5E7F8FBA2CB</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>93F239541A12363D00745E53</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>93F2396B1A12363D00745E53</string>
-				<string>93F239701A12363D00745E53</string>
-				<string>93F2396D1A12363D00745E53</string>
-			</array>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>93F239551A12363D00745E53</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>93F2397F1A12363D00745E53</string>
-			<key>buildPhases</key>
-			<array>
-				<string>36BB4055165BF4183CE8C208</string>
-				<string>93F239521A12363D00745E53</string>
-				<string>93F239531A12363D00745E53</string>
-				<string>93F239541A12363D00745E53</string>
-				<string>BB8F0F076A1E10CD19C65A03</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>ContactsSyncSampleApp</string>
-			<key>productName</key>
-			<string>ContactsSyncSampleApp</string>
-			<key>productReference</key>
-			<string>93F239561A12363D00745E53</string>
-			<key>productType</key>
-			<string>com.apple.product-type.application</string>
-		</dict>
-		<key>93F239561A12363D00745E53</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.application</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>ContactsSyncSampleApp.app</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>93F239571A12363D00745E53</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>93F239561A12363D00745E53</string>
-				<string>93F239751A12363D00745E53</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Products</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>93F239581A12363D00745E53</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>93F2395D1A12363D00745E53</string>
-				<string>93F2395E1A12363D00745E53</string>
-				<string>93F239631A12363D00745E53</string>
-				<string>93F239641A12363D00745E53</string>
-				<string>93F239691A12363D00745E53</string>
-				<string>93F2396C1A12363D00745E53</string>
-				<string>93F2396E1A12363D00745E53</string>
-				<string>93F239601A12363D00745E53</string>
-				<string>93F239591A12363D00745E53</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>ContactsSyncSampleApp</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>93F239591A12363D00745E53</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>93F2395A1A12363D00745E53</string>
-				<string>93F2395B1A12363D00745E53</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Supporting Files</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>93F2395A1A12363D00745E53</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>93F2395B1A12363D00745E53</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>main.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>93F2395C1A12363D00745E53</key>
-		<dict>
-			<key>fileRef</key>
-			<string>93F2395B1A12363D00745E53</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>93F2395D1A12363D00745E53</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>AppDelegate.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>93F2395E1A12363D00745E53</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>AppDelegate.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>93F2395F1A12363D00745E53</key>
-		<dict>
-			<key>fileRef</key>
-			<string>93F2395E1A12363D00745E53</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>93F239601A12363D00745E53</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>93F239611A12363D00745E53</string>
-			</array>
-			<key>currentVersion</key>
-			<string>93F239611A12363D00745E53</string>
-			<key>isa</key>
-			<string>XCVersionGroup</string>
-			<key>path</key>
-			<string>ContactsSyncSampleApp.xcdatamodeld</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-			<key>versionGroupType</key>
-			<string>wrapper.xcdatamodel</string>
-		</dict>
-		<key>93F239611A12363D00745E53</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.xcdatamodel</string>
-			<key>path</key>
-			<string>ContactsSyncSampleApp.xcdatamodel</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>93F239621A12363D00745E53</key>
-		<dict>
-			<key>fileRef</key>
-			<string>93F239601A12363D00745E53</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>93F239631A12363D00745E53</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>MasterViewController.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>93F239641A12363D00745E53</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>MasterViewController.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>93F239651A12363D00745E53</key>
-		<dict>
-			<key>fileRef</key>
-			<string>93F239641A12363D00745E53</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>93F239691A12363D00745E53</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>93F2396A1A12363D00745E53</string>
-			</array>
-			<key>isa</key>
-			<string>PBXVariantGroup</string>
-			<key>name</key>
-			<string>Main.storyboard</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>93F2396A1A12363D00745E53</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>file.storyboard</string>
-			<key>name</key>
-			<string>Base</string>
-			<key>path</key>
-			<string>Base.lproj/Main.storyboard</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>93F2396B1A12363D00745E53</key>
-		<dict>
-			<key>fileRef</key>
-			<string>93F239691A12363D00745E53</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>93F2396C1A12363D00745E53</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>folder.assetcatalog</string>
-			<key>path</key>
-			<string>Images.xcassets</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>93F2396D1A12363D00745E53</key>
-		<dict>
-			<key>fileRef</key>
-			<string>93F2396C1A12363D00745E53</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>93F2396E1A12363D00745E53</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>93F2396F1A12363D00745E53</string>
-			</array>
-			<key>isa</key>
-			<string>PBXVariantGroup</string>
-			<key>name</key>
-			<string>LaunchScreen.xib</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>93F2396F1A12363D00745E53</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>file.xib</string>
-			<key>name</key>
-			<string>Base</string>
-			<key>path</key>
-			<string>Base.lproj/LaunchScreen.xib</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>93F239701A12363D00745E53</key>
-		<dict>
-			<key>fileRef</key>
-			<string>93F2396E1A12363D00745E53</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>93F239711A12363D00745E53</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>93F2397C1A12363D00745E53</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>93F239721A12363D00745E53</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>93F239731A12363D00745E53</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>93F239741A12363D00745E53</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>93F239821A12363D00745E53</string>
-			<key>buildPhases</key>
-			<array>
-				<string>93F239711A12363D00745E53</string>
-				<string>93F239721A12363D00745E53</string>
-				<string>93F239731A12363D00745E53</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array>
-				<string>93F239771A12363D00745E53</string>
-			</array>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>ContactsSyncSampleAppTests</string>
-			<key>productName</key>
-			<string>ContactsSyncSampleAppTests</string>
-			<key>productReference</key>
-			<string>93F239751A12363D00745E53</string>
-			<key>productType</key>
-			<string>com.apple.product-type.bundle.unit-test</string>
-		</dict>
-		<key>93F239751A12363D00745E53</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.cfbundle</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>ContactsSyncSampleAppTests.xctest</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>93F239761A12363D00745E53</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>93F2394E1A12363D00745E53</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>93F239551A12363D00745E53</string>
-			<key>remoteInfo</key>
-			<string>ContactsSyncSampleApp</string>
-		</dict>
-		<key>93F239771A12363D00745E53</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>target</key>
-			<string>93F239551A12363D00745E53</string>
-			<key>targetProxy</key>
-			<string>93F239761A12363D00745E53</string>
-		</dict>
-		<key>93F239781A12363D00745E53</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>93F2397B1A12363D00745E53</string>
-				<string>93F239791A12363D00745E53</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>ContactsSyncSampleAppTests</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>93F239791A12363D00745E53</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>93F2397A1A12363D00745E53</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Supporting Files</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>93F2397A1A12363D00745E53</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>93F2397B1A12363D00745E53</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>ContactsSyncSampleAppTests.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>93F2397C1A12363D00745E53</key>
-		<dict>
-			<key>fileRef</key>
-			<string>93F2397B1A12363D00745E53</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>93F2397D1A12363D00745E53</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
-				<string>gnu++0x</string>
-				<key>CLANG_CXX_LIBRARY</key>
-				<string>libc++</string>
-				<key>CLANG_ENABLE_MODULES</key>
-				<string>YES</string>
-				<key>CLANG_ENABLE_OBJC_ARC</key>
-				<string>YES</string>
-				<key>CLANG_WARN_BOOL_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_EMPTY_BODY</key>
-				<string>YES</string>
-				<key>CLANG_WARN_ENUM_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_INT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_UNREACHABLE_CODE</key>
-				<string>YES</string>
-				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
-				<string>YES</string>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>NO</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_DYNAMIC_NO_PIC</key>
-				<string>NO</string>
-				<key>GCC_OPTIMIZATION_LEVEL</key>
-				<string>0</string>
-				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
-				<array>
-					<string>DEBUG=1</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
-				<string>NO</string>
-				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
-				<string>YES</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES_ERROR</string>
-				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
-				<string>YES_AGGRESSIVE</string>
-				<key>GCC_WARN_UNUSED_FUNCTION</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_VARIABLE</key>
-				<string>YES</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>8.1</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>YES</string>
-				<key>ONLY_ACTIVE_ARCH</key>
-				<string>YES</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>93F2397E1A12363D00745E53</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
-				<string>gnu++0x</string>
-				<key>CLANG_CXX_LIBRARY</key>
-				<string>libc++</string>
-				<key>CLANG_ENABLE_MODULES</key>
-				<string>YES</string>
-				<key>CLANG_ENABLE_OBJC_ARC</key>
-				<string>YES</string>
-				<key>CLANG_WARN_BOOL_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_EMPTY_BODY</key>
-				<string>YES</string>
-				<key>CLANG_WARN_ENUM_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_INT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_UNREACHABLE_CODE</key>
-				<string>YES</string>
-				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
-				<string>YES</string>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>YES</string>
-				<key>ENABLE_NS_ASSERTIONS</key>
-				<string>NO</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
-				<string>YES</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES_ERROR</string>
-				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
-				<string>YES_AGGRESSIVE</string>
-				<key>GCC_WARN_UNUSED_FUNCTION</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_VARIABLE</key>
-				<string>YES</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>8.1</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>NO</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>VALIDATE_PRODUCT</key>
-				<string>YES</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>93F2397F1A12363D00745E53</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>93F239801A12363D00745E53</string>
-				<string>93F239811A12363D00745E53</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>93F239801A12363D00745E53</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>AC3D4DA94E5477ABA79D8005</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
-				<string>AppIcon</string>
-				<key>CODE_SIGN_IDENTITY</key>
-				<string>iPhone Developer: Saad Masood (Z645VAXGY8)</string>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer: Saad Masood (Z645VAXGY8)</string>
-				<key>INFOPLIST_FILE</key>
-				<string>ContactsSyncSampleApp/Info.plist</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<string>$(inherited) @executable_path/Frameworks</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>PROVISIONING_PROFILE</key>
-				<string>81c111ef-85f5-4883-8159-dd6769b81e9c</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>93F239811A12363D00745E53</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>82B8FEA0703F5A9E79ECC403</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
-				<string>AppIcon</string>
-				<key>CODE_SIGN_IDENTITY</key>
-				<string>iPhone Developer: Saad Masood (Z645VAXGY8)</string>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>INFOPLIST_FILE</key>
-				<string>ContactsSyncSampleApp/Info.plist</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<string>$(inherited) @executable_path/Frameworks</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>PROVISIONING_PROFILE</key>
-				<string>81c111ef-85f5-4883-8159-dd6769b81e9c</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>93F239821A12363D00745E53</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>93F239831A12363D00745E53</string>
-				<string>93F239841A12363D00745E53</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>93F239831A12363D00745E53</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>BUNDLE_LOADER</key>
-				<string>$(TEST_HOST)</string>
-				<key>FRAMEWORK_SEARCH_PATHS</key>
-				<array>
-					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
-				<array>
-					<string>DEBUG=1</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>INFOPLIST_FILE</key>
-				<string>ContactsSyncSampleAppTests/Info.plist</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>TEST_HOST</key>
-				<string>$(BUILT_PRODUCTS_DIR)/ContactsSyncSampleApp.app/ContactsSyncSampleApp</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>93F239841A12363D00745E53</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>BUNDLE_LOADER</key>
-				<string>$(TEST_HOST)</string>
-				<key>FRAMEWORK_SEARCH_PATHS</key>
-				<array>
-					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>INFOPLIST_FILE</key>
-				<string>ContactsSyncSampleAppTests/Info.plist</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>TEST_HOST</key>
-				<string>$(BUILT_PRODUCTS_DIR)/ContactsSyncSampleApp.app/ContactsSyncSampleApp</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>AC3D4DA94E5477ABA79D8005</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>name</key>
-			<string>Pods-ContactsSyncSampleApp.debug.xcconfig</string>
-			<key>path</key>
-			<string>Pods/Target Support Files/Pods-ContactsSyncSampleApp/Pods-ContactsSyncSampleApp.debug.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>BB8F0F076A1E10CD19C65A03</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Copy Pods Resources</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>"${SRCROOT}/Pods/Target Support Files/Pods-ContactsSyncSampleApp/Pods-ContactsSyncSampleApp-resources.sh"
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-		<key>C9B6250C00AEEADE5588AC9F</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>784B87664ABAF94C87497DD4</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-	</dict>
-	<key>rootObject</key>
-	<string>93F2394E1A12363D00745E53</string>
-</dict>
-</plist>
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		90302A6A9097A5E7F8FBA2CB /* libPods-ContactsSyncSampleApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 784B87664ABAF94C87497DD4 /* libPods-ContactsSyncSampleApp.a */; };
+		939EE8521A1A25A300D8016F /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 939EE8511A1A25A300D8016F /* Contact.m */; };
+		939EE8561A1A270700D8016F /* ContactPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 939EE8551A1A270700D8016F /* ContactPhone.m */; };
+		939EE8591A1A276600D8016F /* ContactEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 939EE8581A1A276600D8016F /* ContactEmail.m */; };
+		93F2395C1A12363D00745E53 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F2395B1A12363D00745E53 /* main.m */; };
+		93F2395F1A12363D00745E53 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F2395E1A12363D00745E53 /* AppDelegate.m */; };
+		93F239621A12363D00745E53 /* ContactsSyncSampleApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 93F239601A12363D00745E53 /* ContactsSyncSampleApp.xcdatamodeld */; };
+		93F239651A12363D00745E53 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F239641A12363D00745E53 /* MasterViewController.m */; };
+		93F2396B1A12363D00745E53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93F239691A12363D00745E53 /* Main.storyboard */; };
+		93F2396D1A12363D00745E53 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93F2396C1A12363D00745E53 /* Images.xcassets */; };
+		93F239701A12363D00745E53 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93F2396E1A12363D00745E53 /* LaunchScreen.xib */; };
+		93F2397C1A12363D00745E53 /* ContactsSyncSampleAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F2397B1A12363D00745E53 /* ContactsSyncSampleAppTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		93F239761A12363D00745E53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93F2394E1A12363D00745E53 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 93F239551A12363D00745E53;
+			remoteInfo = ContactsSyncSampleApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		784B87664ABAF94C87497DD4 /* libPods-ContactsSyncSampleApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ContactsSyncSampleApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		82B8FEA0703F5A9E79ECC403 /* Pods-ContactsSyncSampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactsSyncSampleApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ContactsSyncSampleApp/Pods-ContactsSyncSampleApp.release.xcconfig"; sourceTree = "<group>"; };
+		939EE8501A1A25A300D8016F /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Contact.h; path = Model/Contact.h; sourceTree = "<group>"; };
+		939EE8511A1A25A300D8016F /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Contact.m; path = Model/Contact.m; sourceTree = "<group>"; };
+		939EE8541A1A270700D8016F /* ContactPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactPhone.h; path = Model/ContactPhone.h; sourceTree = "<group>"; };
+		939EE8551A1A270700D8016F /* ContactPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactPhone.m; path = Model/ContactPhone.m; sourceTree = "<group>"; };
+		939EE8571A1A276600D8016F /* ContactEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactEmail.h; path = Model/ContactEmail.h; sourceTree = "<group>"; };
+		939EE8581A1A276600D8016F /* ContactEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactEmail.m; path = Model/ContactEmail.m; sourceTree = "<group>"; };
+		93F239561A12363D00745E53 /* ContactsSyncSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactsSyncSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		93F2395A1A12363D00745E53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93F2395B1A12363D00745E53 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		93F2395D1A12363D00745E53 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		93F2395E1A12363D00745E53 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		93F239611A12363D00745E53 /* ContactsSyncSampleApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ContactsSyncSampleApp.xcdatamodel; sourceTree = "<group>"; };
+		93F239631A12363D00745E53 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		93F239641A12363D00745E53 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		93F2396A1A12363D00745E53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		93F2396C1A12363D00745E53 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		93F2396F1A12363D00745E53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		93F239751A12363D00745E53 /* ContactsSyncSampleAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactsSyncSampleAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		93F2397A1A12363D00745E53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93F2397B1A12363D00745E53 /* ContactsSyncSampleAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactsSyncSampleAppTests.m; sourceTree = "<group>"; };
+		AC3D4DA94E5477ABA79D8005 /* Pods-ContactsSyncSampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactsSyncSampleApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ContactsSyncSampleApp/Pods-ContactsSyncSampleApp.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		93F239531A12363D00745E53 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90302A6A9097A5E7F8FBA2CB /* libPods-ContactsSyncSampleApp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93F239721A12363D00745E53 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7B551744339920766738FF62 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AC3D4DA94E5477ABA79D8005 /* Pods-ContactsSyncSampleApp.debug.xcconfig */,
+				82B8FEA0703F5A9E79ECC403 /* Pods-ContactsSyncSampleApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		939EE8531A1A25A800D8016F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				939EE8501A1A25A300D8016F /* Contact.h */,
+				939EE8511A1A25A300D8016F /* Contact.m */,
+				939EE8541A1A270700D8016F /* ContactPhone.h */,
+				939EE8551A1A270700D8016F /* ContactPhone.m */,
+				939EE8571A1A276600D8016F /* ContactEmail.h */,
+				939EE8581A1A276600D8016F /* ContactEmail.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		93F2394D1A12363D00745E53 = {
+			isa = PBXGroup;
+			children = (
+				93F239581A12363D00745E53 /* ContactsSyncSampleApp */,
+				93F239781A12363D00745E53 /* ContactsSyncSampleAppTests */,
+				93F239571A12363D00745E53 /* Products */,
+				7B551744339920766738FF62 /* Pods */,
+				C9B6250C00AEEADE5588AC9F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		93F239571A12363D00745E53 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				93F239561A12363D00745E53 /* ContactsSyncSampleApp.app */,
+				93F239751A12363D00745E53 /* ContactsSyncSampleAppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		93F239581A12363D00745E53 /* ContactsSyncSampleApp */ = {
+			isa = PBXGroup;
+			children = (
+				939EE8531A1A25A800D8016F /* Model */,
+				93F2395D1A12363D00745E53 /* AppDelegate.h */,
+				93F2395E1A12363D00745E53 /* AppDelegate.m */,
+				93F239631A12363D00745E53 /* MasterViewController.h */,
+				93F239641A12363D00745E53 /* MasterViewController.m */,
+				93F239691A12363D00745E53 /* Main.storyboard */,
+				93F2396C1A12363D00745E53 /* Images.xcassets */,
+				93F2396E1A12363D00745E53 /* LaunchScreen.xib */,
+				93F239601A12363D00745E53 /* ContactsSyncSampleApp.xcdatamodeld */,
+				93F239591A12363D00745E53 /* Supporting Files */,
+			);
+			path = ContactsSyncSampleApp;
+			sourceTree = "<group>";
+		};
+		93F239591A12363D00745E53 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				93F2395A1A12363D00745E53 /* Info.plist */,
+				93F2395B1A12363D00745E53 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		93F239781A12363D00745E53 /* ContactsSyncSampleAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				93F2397B1A12363D00745E53 /* ContactsSyncSampleAppTests.m */,
+				93F239791A12363D00745E53 /* Supporting Files */,
+			);
+			path = ContactsSyncSampleAppTests;
+			sourceTree = "<group>";
+		};
+		93F239791A12363D00745E53 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				93F2397A1A12363D00745E53 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C9B6250C00AEEADE5588AC9F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				784B87664ABAF94C87497DD4 /* libPods-ContactsSyncSampleApp.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		93F239551A12363D00745E53 /* ContactsSyncSampleApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 93F2397F1A12363D00745E53 /* Build configuration list for PBXNativeTarget "ContactsSyncSampleApp" */;
+			buildPhases = (
+				36BB4055165BF4183CE8C208 /* Check Pods Manifest.lock */,
+				93F239521A12363D00745E53 /* Sources */,
+				93F239531A12363D00745E53 /* Frameworks */,
+				93F239541A12363D00745E53 /* Resources */,
+				BB8F0F076A1E10CD19C65A03 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ContactsSyncSampleApp;
+			productName = ContactsSyncSampleApp;
+			productReference = 93F239561A12363D00745E53 /* ContactsSyncSampleApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		93F239741A12363D00745E53 /* ContactsSyncSampleAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 93F239821A12363D00745E53 /* Build configuration list for PBXNativeTarget "ContactsSyncSampleAppTests" */;
+			buildPhases = (
+				93F239711A12363D00745E53 /* Sources */,
+				93F239721A12363D00745E53 /* Frameworks */,
+				93F239731A12363D00745E53 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				93F239771A12363D00745E53 /* PBXTargetDependency */,
+			);
+			name = ContactsSyncSampleAppTests;
+			productName = ContactsSyncSampleAppTests;
+			productReference = 93F239751A12363D00745E53 /* ContactsSyncSampleAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		93F2394E1A12363D00745E53 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "QBXNet Ltd.";
+				TargetAttributes = {
+					93F239551A12363D00745E53 = {
+						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = HCH56ETPTM;
+					};
+					93F239741A12363D00745E53 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = 93F239551A12363D00745E53;
+					};
+				};
+			};
+			buildConfigurationList = 93F239511A12363D00745E53 /* Build configuration list for PBXProject "ContactsSyncSampleApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 93F2394D1A12363D00745E53;
+			productRefGroup = 93F239571A12363D00745E53 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				93F239551A12363D00745E53 /* ContactsSyncSampleApp */,
+				93F239741A12363D00745E53 /* ContactsSyncSampleAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		93F239541A12363D00745E53 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93F2396B1A12363D00745E53 /* Main.storyboard in Resources */,
+				93F239701A12363D00745E53 /* LaunchScreen.xib in Resources */,
+				93F2396D1A12363D00745E53 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93F239731A12363D00745E53 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		36BB4055165BF4183CE8C208 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BB8F0F076A1E10CD19C65A03 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ContactsSyncSampleApp/Pods-ContactsSyncSampleApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		93F239521A12363D00745E53 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93F239651A12363D00745E53 /* MasterViewController.m in Sources */,
+				939EE8561A1A270700D8016F /* ContactPhone.m in Sources */,
+				93F239621A12363D00745E53 /* ContactsSyncSampleApp.xcdatamodeld in Sources */,
+				939EE8521A1A25A300D8016F /* Contact.m in Sources */,
+				939EE8591A1A276600D8016F /* ContactEmail.m in Sources */,
+				93F2395F1A12363D00745E53 /* AppDelegate.m in Sources */,
+				93F2395C1A12363D00745E53 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93F239711A12363D00745E53 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93F2397C1A12363D00745E53 /* ContactsSyncSampleAppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		93F239771A12363D00745E53 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 93F239551A12363D00745E53 /* ContactsSyncSampleApp */;
+			targetProxy = 93F239761A12363D00745E53 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		93F239691A12363D00745E53 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				93F2396A1A12363D00745E53 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		93F2396E1A12363D00745E53 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				93F2396F1A12363D00745E53 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		93F2397D1A12363D00745E53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		93F2397E1A12363D00745E53 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		93F239801A12363D00745E53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC3D4DA94E5477ABA79D8005 /* Pods-ContactsSyncSampleApp.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Saad Masood (Z645VAXGY8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Saad Masood (Z645VAXGY8)";
+				INFOPLIST_FILE = ContactsSyncSampleApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "81c111ef-85f5-4883-8159-dd6769b81e9c";
+			};
+			name = Debug;
+		};
+		93F239811A12363D00745E53 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82B8FEA0703F5A9E79ECC403 /* Pods-ContactsSyncSampleApp.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Saad Masood (Z645VAXGY8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = ContactsSyncSampleApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "81c111ef-85f5-4883-8159-dd6769b81e9c";
+			};
+			name = Release;
+		};
+		93F239831A12363D00745E53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ContactsSyncSampleAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ContactsSyncSampleApp.app/ContactsSyncSampleApp";
+			};
+			name = Debug;
+		};
+		93F239841A12363D00745E53 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ContactsSyncSampleAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ContactsSyncSampleApp.app/ContactsSyncSampleApp";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		93F239511A12363D00745E53 /* Build configuration list for PBXProject "ContactsSyncSampleApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93F2397D1A12363D00745E53 /* Debug */,
+				93F2397E1A12363D00745E53 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		93F2397F1A12363D00745E53 /* Build configuration list for PBXNativeTarget "ContactsSyncSampleApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93F239801A12363D00745E53 /* Debug */,
+				93F239811A12363D00745E53 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		93F239821A12363D00745E53 /* Build configuration list for PBXNativeTarget "ContactsSyncSampleAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93F239831A12363D00745E53 /* Debug */,
+				93F239841A12363D00745E53 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		93F239601A12363D00745E53 /* ContactsSyncSampleApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				93F239611A12363D00745E53 /* ContactsSyncSampleApp.xcdatamodel */,
+			);
+			currentVersion = 93F239611A12363D00745E53 /* ContactsSyncSampleApp.xcdatamodel */;
+			path = ContactsSyncSampleApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 93F2394E1A12363D00745E53 /* Project object */;
+}

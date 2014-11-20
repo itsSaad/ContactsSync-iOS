@@ -26,7 +26,19 @@
     NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
     [def setObject:@"14695419d181507234f6ca8666aa95015ec8ebb733ef34c14942bc0eb1f7d4a3" forKey:@"api_key"];
     [def synchronize];
+    
+    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
+    if (addressBook)
+    {
+        ABAddressBookRegisterExternalChangeCallback(addressBook, addressBookChanged, (__bridge void *)(self));
+    }
+    
     return YES;
+}
+
+void addressBookChanged(ABAddressBookRef addressBook, CFDictionaryRef info, void *context)
+{
+    NSLog(@"Callback Triggered");
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
