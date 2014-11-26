@@ -55,7 +55,10 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self syncContacts];
+    if ([self.allContacts count] > 0)
+    {
+        [self syncContacts];
+    }
 }
 
 
@@ -110,6 +113,7 @@
 
 -(void)fetchAllContacts
 {
+    NSDate * lastSync = [self.currentUser valueForKey:@"last_sync"];
     NSMutableArray * allPersons = [[NSMutableArray alloc]init];
     //Get the Contacts now.
     CFErrorRef error;
@@ -130,7 +134,18 @@
         [aRecord setObject:recID forKey:@"recordID"];
         [aRecord setObject:recName forKey:@"recordName"];
         [aRecord setObject:(__bridge id)(aPerson) forKey:@"recordRef"];
-        [allPersons addObject:aRecord];
+        NSDate * thisModificationDate = (__bridge NSDate *)ABRecordCopyValue(aPerson, kABPersonModificationDateProperty);
+        NSDate * thisCreationDate = (__bridge NSDate *)ABRecordCopyValue(aPerson, kABPersonCreationDateProperty);
+        if (lastSync && ([lastSync compare:thisCreationDate] == NSOrderedAscending || [lastSync compare:thisModificationDate] == NSOrderedAscending))
+        {
+            NSLog(@"Contact valid for upload to server");
+            [allPersons addObject:aRecord];
+        }
+        else if (!lastSync)
+        {
+            [allPersons addObject:aRecord];
+        }
+        
     }
     self.allContacts = (NSArray *)allPersons;
     
@@ -168,7 +183,7 @@
         NSString * apiKey = [[NSUserDefaults standardUserDefaults] objectForKey:@"api_key"];
         [params setObject:[Contact dictRepresenationFor:allCompleteContacts] forKey:@"contacts"];
         [params setObject:self.currentUser forKey:@"user"];
-        [manager POST:[NSString stringWithFormat:@"http://192.168.1.15:3000/api/v1/users/sync_contacts.json?api_key=%@", apiKey] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject)
+        [manager POST:[NSString stringWithFormat:@"http://192.168.1.250:3000/api/v1/users/sync_contacts.json?api_key=%@", apiKey] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject)
         {
             NSLog(@"JSON: %@", responseObject);
             NSUserDefaults *def  = [NSUserDefaults standardUserDefaults];
@@ -181,15 +196,27 @@
                     [currentUser removeObjectForKey:Akey];
                 }
             }
+            NSString *lastSyncDate = [currentUser valueForKey:@"last_sync"];
+            NSDateFormatter *df = [[NSDateFormatter alloc]init];
+            [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+            [df setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+            NSDate * lastSync = [df dateFromString:lastSyncDate];
+            [currentUser setValue:lastSync forKey:@"last_sync"];
             [def setValue:currentUser forKey:@"current_user"];
+//            dispatch_sync(dispatch_get_main_queue(), ^()
+//                          {
+//                              UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Contacts sync completed." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//                              [alert show];
+//                          });
         } failure:^(AFHTTPRequestOperation *operation, NSError *error)
         {
             NSLog(@"Error: %@", error);
+//            dispatch_sync(dispatch_get_main_queue(), ^()
+//                          {
+//                              UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:[error localizedFailureReason] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//                              [alert show];
+//                          });
         }];
-        
-        dispatch_sync(dispatch_get_main_queue(), ^(){
-            
-        });
     });
 }
 
